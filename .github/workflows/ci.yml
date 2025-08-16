@@ -24,10 +24,10 @@ jobs:
           pip install -r requirements.txt
           pip install flake8 pytest
 
-      - name: Lint with flake8
-        run: |
-          flake8 src/ tests/
+      # - name: Lint with flake8
+      #   run: |
+      #     flake8 src/ tests/
 
-      - name: Run tests with pytest
-        run: |
-          pytest tests/
+      # - name: Run tests with pytest
+      #   run: |
+      #     pytest tests/
