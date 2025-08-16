@@ -1,6 +1,7 @@
 import gradio as gr
 import logging
 from rag_pipeline import RAGPipeline
+from typing import Tuple
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -8,10 +9,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logging.info("Loading RAG pipeline for Gradio app...")
 rag = RAGPipeline(vector_store_path="vector_store/faiss_index")
 
-def chat(query):
+def chat(query: str) -> Tuple[str, str]:
     """
     Handle a user query: retrieve answer and sources from the RAG pipeline.
-    Returns the answer and the top-2 source chunks.
+    Args:
+        query (str): The user's question.
+    Returns:
+        Tuple[str, str]: The answer and the top-2 source chunks as a string.
     """
     if not query.strip():
         return "Please enter a question.", ""
@@ -21,11 +25,15 @@ def chat(query):
     ])
     return answer, sources_str
 
-def clear_fn():
-    """Clear the chat input and outputs."""
+def clear_fn() -> Tuple[str, str, str]:
+    """
+    Clear the chat input and outputs.
+    Returns:
+        Tuple[str, str, str]: Empty strings for question, answer, and sources.
+    """
     return "", "", ""
 
-def main():
+def main() -> None:
     """
     Launch the Gradio app for the RAG chatbot.
     """
