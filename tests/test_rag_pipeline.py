@@ -6,3 +6,7 @@ def test_prompt_template():
     prompt = PROMPT_TEMPLATE.format(context=context, question=question)
     assert "This is a test context." in prompt
     assert "What is the issue?" in prompt
+
+
+
+
