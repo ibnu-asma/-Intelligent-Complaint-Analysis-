@@ -1,4 +1,3 @@
-
 import gradio as gr
 import logging
 from rag_pipeline import RAGPipeline
@@ -46,7 +45,7 @@ def main():
             clear_btn = gr.Button("Clear")
         submit_btn.click(chat, inputs=question, outputs=[answer, sources])
         clear_btn.click(clear_fn, inputs=None, outputs=[question, answer, sources])
-    demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860)
 
 if __name__ == "__main__":
     main()
