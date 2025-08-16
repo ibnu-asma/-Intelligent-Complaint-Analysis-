@@ -1,0 +1,6 @@
+data/
+.env
+*.pyc
+__pycache__/
+venv/
+vector_store/
