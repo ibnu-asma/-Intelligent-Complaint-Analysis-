@@ -7,31 +7,40 @@ This project provides an end-to-end pipeline for intelligent analysis and retrie
 - Retrieval-augmented question answering (RAG pipeline)
 - An interactive Gradio chatbot interface
 
-## Project Structure
+## Directory Structure
+
 ```
 complaint-analysis/
-├── .github/workflows/ci.yml         # CI/CD workflow for linting and tests
-├── data/
-│   ├── raw/                         # Raw data files (e.g., cfpb_complaints.csv)
-│   └── processed/                   # Processed/cleaned data
-├── docker-compose.yml               # Docker Compose for Gradio app
-├── Dockerfile                       # Dockerfile for app containerization
-├── GEMINI.md                        # Project automation and task prompts
-├── notebooks/
-│   └── 1.0-eda.ipynb                # EDA and preprocessing notebook
-├── README.md                        # Project documentation (this file)
-├── requirements.txt                 # Python dependencies
-├── src/
-│   ├── __init__.py                  # Package marker
-│   ├── app.py                       # Gradio chatbot app
-│   ├── data_processing.py           # Chunking, embedding, vector store creation
-│   └── rag_pipeline.py              # RAG pipeline and evaluation
-├── tests/
-│   ├── test_data_processing.py      # Unit tests for data processing
-│   └── test_rag_pipeline.py         # Unit tests for RAG pipeline
-├── vector_store/                    # FAISS vector store files
-└── venv/                            # Python virtual environment (not tracked)
+├── src/                # Source code for data processing, RAG pipeline, and app
+├── notebooks/          # Jupyter notebooks for EDA and prototyping
+├── tests/              # Unit and integration tests
+├── data/               # Raw and processed data files
+│   ├── raw/            # Raw input data (e.g., original CSVs)
+│   └── processed/      # Cleaned/filtered data for downstream tasks
+├── vector_store/       # Persisted FAISS vector store files for semantic search
+├── .github/            # CI/CD workflows and GitHub Actions
+├── requirements.txt    # Python dependencies
+├── Dockerfile          # Docker build instructions
+├── docker-compose.yml  # Docker Compose for multi-service orchestration
+└── README.md           # Project documentation
 ```
+
+- **src/**: All main Python scripts and modules (data processing, RAG pipeline, Gradio app)
+- **notebooks/**: EDA and exploratory work in Jupyter notebooks
+- **tests/**: Automated tests for code quality and correctness
+- **data/raw/**: Input (raw) datasets
+- **data/processed/**: Output (cleaned/filtered) datasets
+- **vector_store/**: Saved vector database for semantic search
+- **.github/**: Continuous integration workflows
+
+## Quick Start
+
+1. **Clone the repository**
+2. **Set up your Python environment**
+3. **Run the EDA notebook in `notebooks/` to generate cleaned data**
+4. **Run the data processing script in `src/` to create the vector store**
+5. **Start the Gradio chatbot app**
+6. **Run tests with `pytest tests/`**
 
 ## Setup Instructions
 1. **Clone the repository**
