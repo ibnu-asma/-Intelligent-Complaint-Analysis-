@@ -10,3 +10,4 @@ gradio
 streamlit
 pytest
 flake8
+langchain-community
