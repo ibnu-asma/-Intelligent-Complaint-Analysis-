@@ -11,6 +11,7 @@ rag = RAGPipeline(vector_store_path="vector_store/faiss_index")
 
 def chat(query: str) -> Tuple[str, str]:
     """
+    
     Handle a user query: retrieve answer and sources from the RAG pipeline.
     Args:
         query (str): The user's question.
