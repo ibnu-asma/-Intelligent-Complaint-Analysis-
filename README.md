@@ -101,3 +101,39 @@ complaint-analysis/
 - [FAISS](https://github.com/facebookresearch/faiss)
 - [Hugging Face Transformers](https://huggingface.co/transformers/)
 - [Gradio](https://gradio.app/)
+
+## EDA & Preprocessing Summary
+
+- The original CFPB dataset contained 9,609,797 records.
+- After filtering for the five target products and removing records without narratives, 177,855 records remained.
+- Complaints with narratives: 2,980,756; without narratives: 6,629,041.
+- Text cleaning included lowercasing, special character removal, and boilerplate removal.
+- The cleaned dataset is saved as `data/processed/filtered_complaints.csv`.
+
+## Chunking & Embedding Strategy
+
+- **Chunking:** Used LangChain's `RecursiveCharacterTextSplitter` with `chunk_size=500` and `chunk_overlap=50` to balance context and efficiency.
+- **Embedding Model:** Used `sentence-transformers/all-MiniLM-L6-v2` for its strong semantic search performance and efficiency.
+- **Indexing:** Each chunk is stored in a FAISS vector store with complaint ID and product metadata for traceability.
+
+## Example Output/Results
+
+Sample RAG pipeline evaluation table:
+
+```
+| Question                                                    | Generated Answer                                                                                          | Retrieved Sources                                                                                                                               | Quality Score   | Comments   |
+|:------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|:-----------|
+| What are common issues with Buy now, pay later?             | late fees and other issues                                                                                 | ID: 13406469, Product: Credit card; ID: 2032020, Product: Credit card                                                                               |                 |            |
+| How do customers describe problems with credit cards?       | unsuspecting customers over who should be informed multiple times and through a transparent process about the risks of the use of their credit cards they try to use this as an excuse not to resolve customer issues when using their bank credit card the card this is terriable and this is not right | ID: 2352501, Product: Credit card; ID: 9122011, Product: Credit card                                                                                |                 |            |
+| Are there complaints about money transfers?                 | yes                                                                                                       | ID: 11709612, Product: Money transfer, virtual currency, or money service; ID: 5167908, Product: Money transfer, virtual currency, or money service |                 |            |
+```
+
+## Deliverables Checklist
+
+- [x] EDA & preprocessing notebook/script (`notebooks/1.0-eda.ipynb`)
+- [x] Cleaned dataset (`data/processed/filtered_complaints.csv`)
+- [x] Chunking, embedding, and indexing script (`src/data_processing.py`)
+- [x] Persisted vector store (`vector_store/faiss_index`)
+- [x] RAG pipeline script and evaluation (`src/rag_pipeline.py`)
+- [x] Interactive chatbot app (`src/app.py`)
+- [x] This README and summary sections
